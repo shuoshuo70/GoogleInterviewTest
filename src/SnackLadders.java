@@ -4,6 +4,7 @@ import java.util.Queue;
 /**
  * Created by shuoshu on 2018/3/17.
  */
+
 public class SnackLadders {
     public static void main(String[] args) {
         // Let us construct the board given in above diagram
