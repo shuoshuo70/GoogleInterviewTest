@@ -20,10 +20,8 @@ public class BasicCalculator3 {
                     nums.push(calculate(nums.pop(), nums.pop(), signs.pop()));
                 }
                 signs.pop();
-            } else if (s.equals("*") || s.equals("/")) {
-                signs.push(s);
-            } else if (s.equals("+") || s.equals("-")) {
-                while (!signs.isEmpty() && (signs.peek().equals("*") || signs.peek().equals("/"))) {
+            } else if ("+-*/".indexOf(s) != -1) {
+                while (!signs.isEmpty() && isPreCal(s, signs.peek())) {
                     nums.push(calculate(nums.pop(), nums.pop(), signs.pop()));
                 }
                 signs.push(s);
@@ -37,6 +35,17 @@ public class BasicCalculator3 {
         }
 
         return nums.pop();
+    }
+
+    private boolean isPreCal(String cur, String pre) {
+        if ("*/".indexOf(pre) != -1) {
+            return true;
+        }
+        if ("+-".indexOf(cur) != -1 && "+-".indexOf(pre) != -1) {
+            return true;
+        }
+
+        return false;
     }
 
     private int calculate(int b, int a, String sign) {
